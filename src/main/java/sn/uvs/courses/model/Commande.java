@@ -5,24 +5,58 @@ package sn.uvs.courses.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 /**
  * @author podisto
  * La classe {@link Commande} est notre modele de données
- *
+ * Classe qu'on peut persister (CRUD) en base de données
  */
+@Entity
+@Table(name = "commandes")
 public class Commande {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
+	
 	private int quantite;
+	
+	@Column(name = "addresse")
 	private String addresse;
+	
+	@Column(name = "telephone", nullable = false, length = 9)
 	private String telephone;
+	
+	@Column(name = "date_creation")
 	private Date dateCreation;
+	
+	@Column(name = "plat")
 	private String plat;
+	
+	@Column(name = "prix")
 	private int prix;
+	
+	@Column(name = "nom")
 	private String nom;
+	
+	@Column(name = "prenom")
 	private String prenom;
-	private boolean aPaye; // JVM les booleans sont true par defaut catastrophe
+	
+	@Column(name = "paye")
+	private boolean aPaye;
+	
+	@Column(name = "livre")
 	private boolean estLivre;
 	
+	@Transient
 	private int total;
 
 	public int getQuantite() {
